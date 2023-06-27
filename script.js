@@ -5,10 +5,10 @@ let tareaInput = document.querySelector("input");
 let inputSelect;
 
 let cargaInicial = () => {
-  let tareasLocalStorage = JSON.parse(localStorage.getItem("tareas")) || [];
+  let lista_tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 
-  if (tareasLocalStorage.length > 0) {
-    tareasLocalStorage.forEach((tarea) => {
+  if (lista_tareas.length > 0) {
+    lista_tareas.forEach((tarea) => {
       agregarTarea(tarea);
     });
   }
