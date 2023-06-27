@@ -1,18 +1,27 @@
 const list = document.getElementById("list");
 const btn = document.getElementById("btn");
 let lista_elementos = Array.from(list.querySelectorAll("li a"));
-
 let tareaInput = document.querySelector("input");
 let inputSelect;
-tareaInput.addEventListener("change", () => (inputSelect = tareaInput.value));
 
+let cargaInicial = () => {
+  let tareasLocalStorage = JSON.parse(localStorage.getItem("tareas")) || [];
+
+  if (tareasLocalStorage.length > 0) {
+    tareasLocalStorage.forEach((tarea) => {
+      agregarTarea(tarea);
+    });
+  }
+
+  document.querySelector("input").focus();
+};
+
+tareaInput.addEventListener("change", () => (inputSelect = tareaInput.value));
 btn.addEventListener("click", () => agregarTarea());
 
 lista_elementos.forEach((e) => {
   e.addEventListener("click", () => e.remove());
 });
-
-//list.addEventListener("click", () => eliminarTarea());
 
 let agregarTarea = () => {
   //console.log(inputSelect);
@@ -27,7 +36,19 @@ let agregarTarea = () => {
   list.appendChild(nuevaTarea);
   tareaInput.value = " ";
   enlace.addEventListener("click", () => enlace.remove());
-  //lista_elementos.forEach((li) => console.log(li.innerHTML));
+  //lista_elementos = Array.from(list.querySelectorAll("li a"));
+  lista_elementos.push(enlace);
+  /*for (i = 0; i < lista_elementos.length; i++) {
+    console.log(lista_elementos[i].innerHTML);
+  }*/
+  let lista_tareas = new Array();
+
+  lista_elementos.forEach((e) => {
+    lista_tareas.push(e.innerHTML);
+  });
+  console.log(lista_tareas);
+
+  localStorage.setItem("tareas", JSON.stringify(lista_tareas));
 };
 
 //eliminarTarea = () => {
@@ -37,3 +58,4 @@ let agregarTarea = () => {
 //    });
 //  });
 //};
+cargaInicial();
