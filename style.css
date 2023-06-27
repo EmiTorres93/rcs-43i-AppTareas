@@ -1,0 +1,20 @@
+.lista li a {
+  border-bottom: 2px solid #b6b6b6;
+  text-decoration: none;
+  display: block;
+  color: #212121;
+}
+
+.lista li {
+  list-style-type: none;
+}
+
+.lista li a:hover {
+  text-decoration: line-through;
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  justify-content: end !important;
+}
